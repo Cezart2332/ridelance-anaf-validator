@@ -1,0 +1,9 @@
+E: validari globale
+ eroare atribut: cif: CUI invalid ('12345675')
+E: validari globale
+ eroare atribut: functia_declarant: atributul trebuie sa existe
+E: validari globale
+ va rugam sa verificati daca folositi versiunea corecta de PDF inteligent sau daca XML-ul creat contine namespace-ul conform schemei XSD (pentru perioada de raportare)
+ eroare atribut: foo: atribut necunoscut ('foo') in namespace='mfp:anaf:dgti:d301:declaratie:v1'
+E: sectiune (1)
+ eroare atribut: data_doc: data calendaristica eronata: '2026-08-10'

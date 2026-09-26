@@ -1,0 +1,3 @@
+A: validari globale
+ atentionare atribut: email: Email invalid ('x@')
+ok

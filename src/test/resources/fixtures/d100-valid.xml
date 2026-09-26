@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<declaratie100 xmlns="mfp:anaf:dgti:d100:declaratie:v2" luna="8" an="2026" d_anulare="0" nume_declar="POPESCU" prenume_declar="ION" functie_declar="TITULAR" cui="12345674" den="POPESCU ION PFA" adresa="Str. Exemplu 1, Bucuresti" totalPlata_A="200">
+  <obligatie cod_oblig="604" cod_bugetar="5503XXXXXX" scadenta="25.09.2026" nr_evid="10604010826250926000052" suma_dat="100" suma_ded="0" suma_plata="100" suma_rest="0"/>
+</declaratie100>

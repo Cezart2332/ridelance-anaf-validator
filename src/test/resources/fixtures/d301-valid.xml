@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<declaratie301 xmlns="mfp:anaf:dgti:d301:declaratie:v1" luna="8" an="2026" d_rec="0" mijl_trans="0" temei="0" cif="12345674" denumire="POPESCU ION PFA" adresa="Str. Exemplu 1, Bucuresti" banca="BANCA TRANSILVANIA" cont="RO49AAAA1B31007593840000" pers_inreg="1" nr_evid="10301010826250926000046" baza1="1000" tva1="210" baza2="0" tva2="0" baza3="0" tva3="0" baza4="0" tva4="0" baza5="0" tva5="0" totalPlata_A="1210" nume_declarant="POPESCU" prenume_declarant="ION" functia_declarant="TITULAR">
+  <sectiune tip_operatie="1" nr_doc="INV-1" data_doc="10.08.2026" val_valuta="1000" tip_valuta="RON" curs_valutar="1" baza="1000" tva="210"/>
+</declaratie301>

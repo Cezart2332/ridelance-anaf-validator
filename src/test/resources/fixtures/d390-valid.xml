@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<declaratie390 xmlns="mfp:anaf:dgti:d390:declaratie:v3" luna="8" an="2026" d_rec="0" nume_declar="POPESCU" prenume_declar="ION" functie_declar="TITULAR" cui="12345674" den="POPESCU ION PFA" adresa="Str. Exemplu 1, Bucuresti" totalPlata_A="1001">
+  <rezumat nr_pag="1" nrOPI="1" bazaL="0" bazaT="0" bazaA="0" bazaP="0" bazaS="1000" bazaR="0" total_baza="1000"/>
+  <operatie tip="S" tara="EE" codO="102090374" denO="BOLT OPERATIONS OU" baza="1000"/>
+</declaratie390>

@@ -1,0 +1,7 @@
+E: obligatie (1) [cod_oblig=604 scadenta=30.09.2026]
+ eroare regula: R15.1: scadenta (30.09.2026) ar fi trebuit sa fie 25.09.2026 pt. cod obligatie=604
+E: obligatie (1) [cod_oblig=604 scadenta=30.09.2026]
+ eroare regula: .9: scadenta (30.09.2026) ar fi trebuit sa fie 25.09.2026 pt. cod obligatie 604
+E: obligatie (1) [cod_oblig=604 scadenta=30.09.2026]
+ Nr. de evidenta a platii este eronat
+ eroare regula: R16: nr_evid (10604010826250926000052) - scadenta platii eronata

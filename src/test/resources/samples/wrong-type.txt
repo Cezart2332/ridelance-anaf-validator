@@ -1,0 +1,2 @@
+F: validari globale
+ eroare structura: sectiune necunoscuta ('declaratie100')

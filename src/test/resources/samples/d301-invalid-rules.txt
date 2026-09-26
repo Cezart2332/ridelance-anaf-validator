@@ -1,0 +1,17 @@
+E: validari globale
+ eroare regula: R5b: daca declaratia este initiala (d_rec = 0) atunci atributul temei trebuie sa fie diferit de 1
+E: validari globale
+ Nr. de evidenta a platii este eronat
+ eroare regula: R16: nr_evid (10301082600125082026000) - pozitii fixe eronate
+E: validari globale
+ Nr. de evidenta a platii este eronat
+ eroare regula: R16: nr_evid (10301082600125082026000) - perioada raportare eronata
+E: validari globale
+ Nr. de evidenta a platii este eronat
+ eroare regula: R16: nr_evid (10301082600125082026000) - scadenta platii eronata
+E: validari globale
+ Nr. de evidenta a platii este eronat
+ eroare regula: R16: nr_evid (10301082600125082026000) - cifra control eronata
+E: validari globale
+ suma de control eronata
+ eroare regula: R28: totalPlata_A (1420) = totalPlata_A calculat conform regulii (1210)
