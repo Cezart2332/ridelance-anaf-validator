@@ -1,0 +1,16 @@
+# Build
+target/
+
+# Kitul ANAF (DUKIntegrator + validatoare): nu se comite, se montează ca volum
+validators/
+declaratii_soft_j/
+
+# Runtime
+tmp/
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.iml
+.DS_Store

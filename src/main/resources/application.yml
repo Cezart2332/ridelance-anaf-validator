@@ -1,0 +1,53 @@
+server:
+  port: ${PORT:8080}
+  tomcat:
+    # Peste limita de upload răspundem 413; Tomcat consumă restul corpului ca să poată trimite răspunsul.
+    max-swallow-size: 20MB
+
+spring:
+  application:
+    name: anaf-validator
+  servlet:
+    multipart:
+      max-file-size: ${upload.maxSizeMb}MB
+      max-request-size: 20MB
+  main:
+    banner-mode: off
+
+upload:
+  maxSizeMb: 5
+
+validators:
+  path: ${VALIDATORS_PATH:./validators}
+
+runner:
+  timeoutSeconds: ${RUNNER_TIMEOUT_SECONDS:60}
+  maxConcurrent: ${RUNNER_MAX_CONCURRENT:2}
+  javaCommand: ${RUNNER_JAVA_COMMAND:}
+  jvmArgs:
+    - -Djava.awt.headless=true
+    - -Xmx256m
+    - -XX:+UseSerialGC
+    - -XX:TieredStopAtLevel=1
+  maxOutputKb: 256
+
+workspace:
+  path: ${WORKSPACE_PATH:${java.io.tmpdir}/anaf-validator}
+  staleAfterMinutes: 60
+
+security:
+  internalToken: ${INTERNAL_TOKEN:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  structured:
+    format:
+      console: ${LOG_FORMAT:ecs}

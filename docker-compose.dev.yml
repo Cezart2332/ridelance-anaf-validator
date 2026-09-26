@@ -1,0 +1,13 @@
+# Rulare locală: docker compose -f docker-compose.dev.yml up --build
+# Serviciul ascultă pe http://localhost:8090; kitul din ./validators e montat read-only.
+services:
+  anaf-validator:
+    build: .
+    ports:
+      - "8090:8080"
+    environment:
+      INTERNAL_TOKEN: ${INTERNAL_TOKEN:-dev-token-schimba-ma}
+      RUNNER_TIMEOUT_SECONDS: ${RUNNER_TIMEOUT_SECONDS:-60}
+      RUNNER_MAX_CONCURRENT: ${RUNNER_MAX_CONCURRENT:-2}
+    volumes:
+      - ./validators:/validators:ro
