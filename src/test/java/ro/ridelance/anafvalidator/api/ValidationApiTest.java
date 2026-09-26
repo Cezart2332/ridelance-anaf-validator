@@ -192,6 +192,10 @@ class ValidationApiTest {
 
         mvc.perform(validate("d301-valid.xml", "D301", "2026-09", "VALIDATE"))
                 .andExpect(status().isGatewayTimeout());
+        mvc.perform(get("/actuator/metrics/anaf.validation").param("tag", "outcome:timeout")
+                        .header(InternalTokenFilter.HEADER, TOKEN))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.measurements[?(@.statistic == 'COUNT')].value").value(1.0));
     }
 
     @Test
