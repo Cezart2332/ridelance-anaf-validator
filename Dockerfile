@@ -20,7 +20,10 @@ ENV VALIDATORS_PATH=/validators \
     WORKSPACE_PATH=/tmp/anaf-validator
 
 USER app
+# Portul vine din PORT (implicit 8080). Healthcheck-ul îl urmează: cu PORT=9020 și un healthcheck fix
+# pe 8080, containerul devenea „unhealthy”, iar proxy-ul Coolify răspundea 503 la orice validare.
+ENV PORT=8080
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
-    CMD curl -fsS http://localhost:8080/actuator/health || exit 1
+    CMD curl -fsS "http://localhost:${PORT}/actuator/health" || exit 1
 ENTRYPOINT ["java", "-XX:MaxRAMPercentage=40", "-jar", "/app/app.jar"]
