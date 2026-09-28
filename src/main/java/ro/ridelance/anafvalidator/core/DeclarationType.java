@@ -7,7 +7,9 @@ import java.util.Optional;
 public enum DeclarationType {
     D100,
     D301,
-    D390;
+    D390,
+    /** Cererea de cod de TVA art. 317 (declarație de mențiuni), nu o declarație lunară. */
+    D700;
 
     public static Optional<DeclarationType> parse(String value) {
         return Arrays.stream(values()).filter(t -> t.name().equals(value)).findFirst();

@@ -43,7 +43,7 @@ public class ValidationController {
         }
 
         DeclarationType type = DeclarationType.parse(request.declarationType())
-                .orElseThrow(() -> badRequest("declarationType trebuie să fie D100, D301 sau D390"));
+                .orElseThrow(() -> badRequest("declarationType trebuie să fie D100, D301, D390 sau D700"));
         ValidationMode mode = ValidationMode.parse(request.mode())
                 .orElseThrow(() -> badRequest("mode trebuie să fie VALIDATE sau VALIDATE_AND_PDF"));
         String version = request.validatorVersion();

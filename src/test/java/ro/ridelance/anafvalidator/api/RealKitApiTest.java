@@ -46,14 +46,15 @@ class RealKitApiTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"D100, d100-valid.xml", "D301, d301-valid.xml", "D390, d390-valid.xml"})
+    @CsvSource({"D100, d100-valid.xml", "D301, d301-valid.xml", "D390, d390-valid.xml", "D700, d700-valid.xml"})
     @EnabledIf("ro.ridelance.anafvalidator.KitSupport#kitAvailable")
     void validFixturesProduceAPdf(String type, String fixture) {
         Map<String, Object> body = validate(type, fixture, "VALIDATE_AND_PDF").getBody();
 
         assertThat(body).containsEntry("valid", true).containsEntry("declarationType", type);
         assertThat((List<?>) body.get("errors")).isEmpty();
-        assertThat(body.get("rawOutput")).isEqualTo("ok");
+        // D700 are mereu atenționarea „urmează să fie prelucrat la organul fiscal competent”.
+        assertThat((String) body.get("rawOutput")).endsWith("ok");
         byte[] pdf = Base64.getDecoder().decode((String) body.get("pdfBase64"));
         assertThat(new String(pdf, 0, 5)).isEqualTo("%PDF-");
     }
@@ -62,7 +63,8 @@ class RealKitApiTest {
     @CsvSource({
             "D100, d100-invalid.xml, R15.1",
             "D301, d301-invalid.xml, R28",
-            "D390, d390-invalid.xml, R24.1"})
+            "D390, d390-invalid.xml, R24.1",
+            "D700, d700-invalid.xml, R7.2"})
     @EnabledIf("ro.ridelance.anafvalidator.KitSupport#kitAvailable")
     @SuppressWarnings("unchecked")
     void invalidFixturesShowTheAnafMessages(String type, String fixture, String expectedCode) {

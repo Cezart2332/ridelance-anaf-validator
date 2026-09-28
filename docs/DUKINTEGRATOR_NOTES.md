@@ -7,10 +7,11 @@ Versiuni din kit:
 
 | Componentă | Versiune |
 |---|---|
-| DUKIntegrator.jar | build 2018-09-07 (ultima intrare din istoric: 1.3.16.3.3) |
+| DUKIntegrator.jar | actualizat pe 2026-09-28 din `update5/zz9` (cu `lib/DecValidation.jar`, `Validator.jar`, `DecPdf.jar` din `update5/ss8`); build-ul din 2018 nu are `dec/DECTagCtx`, cerut de D700Validator |
 | D100Validator.jar | J21.0.8 (14-Sep-2026) |
 | D301Validator.jar | J1.2.5 (22-Oct-2020) |
 | D390Validator.jar | J4.1.2 (25-Jun-2025) |
+| D700Validator.jar | J5.0.3 (23-Apr-2026), `D700Pdf.jar` P4.0.3 |
 
 Sursa interfeței: `validators/2026-09/doc/Instructiuni.txt` (secțiunea „B. modul linie de comanda”).
 

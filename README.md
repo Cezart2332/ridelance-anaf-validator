@@ -1,6 +1,6 @@
 # ridelance-anaf-validator
 
-Serviciu intern care primește XML-ul unei declarații ANAF (D100 / D301 / D390), îl validează cu
+Serviciu intern care primește XML-ul unei declarații ANAF (D100 / D301 / D390, plus D700 pentru codul de TVA art. 317), îl validează cu
 **DUKIntegrator + validatorul oficial ANAF** și, la cerere, generează PDF-ul cu XML-ul atașat.
 
 Îl apelează doar backend-ul .NET RIDElance. Nu se expune public.
@@ -15,7 +15,7 @@ Kitul nu se comite în git. Se pune în `validators/{versiune}/` (pe server, în
 De unde se descarcă:
 
 1. **DUKIntegrator**: pagina ANAF „Descărcare declarații” → secțiunea *Soft J* → „DUKIntegrator” (arhiva `dist`).
-2. **Validatoarele**: aceeași pagină, câte o arhivă *Soft J* pentru D100, D301 și D390. Fiecare conține
+2. **Validatoarele**: aceeași pagină, câte o arhivă *Soft J* pentru D100, D301, D390 și D700. Fiecare conține
    `DxxxValidator.jar` și `DxxxPdf.jar`.
 
 Cum se așază (un folder per versiune de kit, ex. `2026-09`):
@@ -30,7 +30,8 @@ validators/
         ├── DecPdf.jar, DecValidation.jar, Validator.jar, bcmail/bcprov/iText …
         ├── D100Validator.jar, D100Pdf.jar
         ├── D301Validator.jar, D301Pdf.jar
-        └── D390Validator.jar, D390Pdf.jar
+        ├── D390Validator.jar, D390Pdf.jar
+        └── D700Validator.jar, D700Pdf.jar
 ```
 
 Folderul `jre6/` din kit (Java 6 pe 32 de biți, pentru Windows) nu e necesar: serviciul folosește Java 21.
@@ -74,7 +75,7 @@ Toate cererile cer header-ul `X-Internal-Token`; fără el, `401`. Excepție: `G
 | Câmp | Valori |
 |---|---|
 | `xml` | fișier, max 5 MB |
-| `declarationType` | `D100` \| `D301` \| `D390` |
+| `declarationType` | `D100` \| `D301` \| `D390` \| `D700` |
 | `validatorVersion` | numele folderului din `validators/`, ex. `2026-09` |
 | `mode` | `VALIDATE` \| `VALIDATE_AND_PDF` |
 | `correlationId` | opțional, `[A-Za-z0-9._:-]{1,100}`; altfel se ia din header-ul `X-Correlation-Id` sau se generează |
