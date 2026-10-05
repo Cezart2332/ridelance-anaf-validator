@@ -1,0 +1,5 @@
+# Reviewed localhost examples in README; the literal dev-token-schimba-ma
+# is the public development placeholder in docker-compose.dev.yml, not a secret.
+# Exact historical findings only: new tokens in README remain scanned.
+3e6e752374f7b1f2a2d89ec58184efffd1112ea6:README.md:curl-auth-header:83
+67ab601ab407c5b8a1dd8f58d2f3b6204b972b86:README.md:curl-auth-header:49
