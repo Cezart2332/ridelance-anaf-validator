@@ -19,6 +19,8 @@
 
     <properties>
         <java.version>21</java.version>
+        <!-- Peste versiunea din Spring Boot 3.5.16: 10.1.55 are CVE-2026-65182, -65905, -68525 (critice). -->
+        <tomcat.version>10.1.60</tomcat.version>
     </properties>
 
     <dependencies>
