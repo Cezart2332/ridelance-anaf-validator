@@ -42,11 +42,20 @@ public class ValidationService {
     }
 
     public ValidationOutcome validate(ValidatorKit kit, DeclarationType type, ValidationMode mode, byte[] xml) {
+        return validate(kit, type, mode, xml, null);
+    }
+
+    /**
+     * @param attachment arhiva ZIP care se atașează PDF-ului (doar la {@code VALIDATE_AND_PDF}), sau
+     *                   {@code null}
+     */
+    public ValidationOutcome validate(ValidatorKit kit, DeclarationType type, ValidationMode mode, byte[] xml,
+            byte[] attachment) {
         long start = System.nanoTime();
         String outcome = "error";
         Boolean valid = null;
         try {
-            ValidationOutcome result = validateInWorkspace(kit, type, mode, xml, start);
+            ValidationOutcome result = validateInWorkspace(kit, type, mode, xml, attachment, start);
             valid = result.valid();
             outcome = valid ? "valid" : "invalid";
             return result;
@@ -74,11 +83,14 @@ public class ValidationService {
     }
 
     private ValidationOutcome validateInWorkspace(ValidatorKit kit, DeclarationType type, ValidationMode mode,
-            byte[] xml, long start) {
+            byte[] xml, byte[] attachment, long start) {
         xmlChecker.check(xml);
 
         try (Workspace workspace = workspaces.create()) {
             Files.write(workspace.xml(), xml);
+            if (attachment != null) {
+                Files.write(workspace.attachment(), attachment);
+            }
             DukRunResult run = runner.run(kit, type, mode, workspace);
             if (run.resultOutput() == null) {
                 // Nu ar trebui să se întâmple (tipul și fișierul sunt verificate înainte); stdout spune de ce.

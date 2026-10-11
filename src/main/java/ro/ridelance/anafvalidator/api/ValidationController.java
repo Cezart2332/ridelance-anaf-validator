@@ -71,8 +71,29 @@ public class ValidationController {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-        ValidationOutcome outcome = validationService.validate(kit, type, mode, xml);
+        ValidationOutcome outcome = validationService.validate(kit, type, mode, xml, attachment(request, mode));
         return ValidationResponse.from(outcome, type, version, MDC.get(CorrelationIdFilter.MDC_KEY));
+    }
+
+    /** Arhiva atașată declarației: opțională, doar ZIP și doar când se cere și PDF-ul. */
+    private static byte[] attachment(ValidationRequest request, ValidationMode mode) {
+        if (request.attachment() == null || request.attachment().isEmpty()) {
+            return null;
+        }
+        if (mode != ValidationMode.VALIDATE_AND_PDF) {
+            throw badRequest("attachment se trimite doar cu mode=VALIDATE_AND_PDF");
+        }
+        byte[] zip;
+        try {
+            zip = request.attachment().getBytes();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        // Semnătura unei arhive ZIP: „PK”, apoi octeții 3 și 4.
+        if (zip.length < 4 || zip[0] != 'P' || zip[1] != 'K' || zip[2] != 3 || zip[3] != 4) {
+            throw badRequest("attachment trebuie să fie o arhivă ZIP");
+        }
+        return zip;
     }
 
     private static ApiException badRequest(String message) {

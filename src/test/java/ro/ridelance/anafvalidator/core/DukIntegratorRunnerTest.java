@@ -61,6 +61,19 @@ class DukIntegratorRunnerTest {
     }
 
     @Test
+    void pdfCommandPassesTheAttachmentWhenTheRequestHasOne() throws Exception {
+        DukIntegratorRunner runner = new DukIntegratorRunner(new RunnerProperties(60, 1, "java", JVM_ARGS, 64));
+        ValidatorKit kit = fakeKit(Path.of("/kit"));
+        try (Workspace ws = workspaces.create()) {
+            Files.write(ws.attachment(), new byte[] {'P', 'K', 3, 4});
+            List<String> command = runner.command(kit, DeclarationType.D700, ValidationMode.VALIDATE_AND_PDF, ws);
+            assertThat(command.subList(5, command.size())).containsExactly(
+                    "-p", "D700", ws.xml().toString(), "+" + ws.result(), "0", ws.attachment().toString(),
+                    ws.pdf().toString());
+        }
+    }
+
+    @Test
     @EnabledOnOs({OS.LINUX, OS.MAC})
     void killsTheProcessOnTimeout() throws Exception {
         Path fakeJava = temp.resolve("fake-java.sh");

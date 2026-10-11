@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public record ValidationRequest(
         MultipartFile xml,
+        MultipartFile attachment,
         String declarationType,
         String validatorVersion,
         String mode,

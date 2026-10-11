@@ -76,7 +76,8 @@ public class DukIntegratorRunner {
         command.add("+" + workspace.result());
         if (mode == ValidationMode.VALIDATE_AND_PDF) {
             command.add("0"); // optiuneValidare
-            command.add("0"); // fisierZIP: declarațiile noastre nu au ZIP atașat
+            // fisierZIP: „0” = fără atașament. D700 depusă prin împuternicit vine cu împuternicirea.
+            command.add(Files.exists(workspace.attachment()) ? workspace.attachment().toString() : "0");
             command.add(workspace.pdf().toString());
         }
         return command;

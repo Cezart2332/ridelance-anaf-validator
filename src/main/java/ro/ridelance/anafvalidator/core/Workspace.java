@@ -8,6 +8,7 @@ public final class Workspace implements AutoCloseable {
     static final String XML = "declaratie.xml";
     static final String RESULT = "rezultat.txt";
     static final String PDF = "declaratie.pdf";
+    static final String ATTACHMENT = "atasament.zip";
     static final String STDOUT = "stdout.txt";
 
     private final Path dir;
@@ -32,6 +33,11 @@ public final class Workspace implements AutoCloseable {
 
     public Path pdf() {
         return dir.resolve(PDF);
+    }
+
+    /** Arhiva atașată declarației; există doar dacă cererea a venit cu una. */
+    public Path attachment() {
+        return dir.resolve(ATTACHMENT);
     }
 
     public Path stdout() {
