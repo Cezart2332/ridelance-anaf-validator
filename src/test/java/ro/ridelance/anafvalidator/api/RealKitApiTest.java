@@ -12,7 +12,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
@@ -33,6 +34,7 @@ import ro.ridelance.anafvalidator.security.InternalTokenFilter;
  * Serviciul pornit pe un port real, cu kitul DUKIntegrator din {@code validators/}.
  * Testele care au nevoie de kit se sar dacă lipsește; limita de upload se verifică oricum.
  */
+@AutoConfigureTestRestTemplate
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "security.internalToken=test-token")
 class RealKitApiTest {
@@ -103,7 +105,7 @@ class RealKitApiTest {
         MultiValueMap<String, Object> form = form("D301", "big.xml", new byte[5 * 1024 * 1024 + 1], "VALIDATE");
         ResponseEntity<String> response = http.exchange("/v1/validate", HttpMethod.POST, entity(form), String.class);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.PAYLOAD_TOO_LARGE);
+        assertThat(response.getStatusCode().value()).isEqualTo(413);
     }
 
     private ResponseEntity<Map<String, Object>> validate(String type, String fixture, String mode) {

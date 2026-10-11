@@ -37,7 +37,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     ResponseEntity<ApiError> tooLarge(MaxUploadSizeExceededException e) {
-        return respond(HttpStatus.PAYLOAD_TOO_LARGE, "Fișierul depășește dimensiunea maximă permisă");
+        return respond(HttpStatus.CONTENT_TOO_LARGE, "Fișierul depășește dimensiunea maximă permisă");
     }
 
     @ExceptionHandler(MultipartException.class)

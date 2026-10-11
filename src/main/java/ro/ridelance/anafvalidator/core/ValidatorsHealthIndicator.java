@@ -1,7 +1,7 @@
 package ro.ridelance.anafvalidator.core;
 
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.boot.health.contributor.Health;
+import org.springframework.boot.health.contributor.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 /** Serviciul e sănătos doar dacă are cel puțin o versiune de validator instalată. */

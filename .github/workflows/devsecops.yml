@@ -236,9 +236,20 @@ jobs:
         with:
           persist-credentials: false
 
+      # Trivy citeste pom-ul parinte si dependentele din Maven Central. Trei scanari la rand, fara
+      # cache, primesc uneori 429 de acolo si pica fara nicio vulnerabilitate gasita. Cu depozitul
+      # local umplut o data (si pastrat intre rulari), Trivy nu mai iese pe retea pentru ele.
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - run: mvn -B -q dependency:go-offline
+
       - name: Trivy filesystem scan
         run: |
-          trivy() { docker run --rm -v "$HOME/.cache/trivy:/root/.cache/trivy" -v "$PWD:/work" -w /work "$TRIVY" "$@"; }
+          trivy() { docker run --rm -v "$HOME/.cache/trivy:/root/.cache/trivy" -v "$HOME/.m2:/root/.m2" -v "$PWD:/work" -w /work "$TRIVY" "$@"; }
           trivy fs --scanners vuln --format sarif --output trivy-fs.sarif .
           trivy fs --scanners vuln --severity HIGH,CRITICAL --format table .
           trivy fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 --format table .
